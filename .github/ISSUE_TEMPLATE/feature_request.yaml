@@ -29,6 +29,6 @@ body:
     id: checkboxes
     attributes:
       options:
-      - label: This feature is possible to do when making UI in roblox studio, not just from webdev CSS
-        required: true
-      - label: You are willing to contribute to this
+        - label: This feature is possible to do when making UI in roblox studio, not just from webdev CSS
+          required: true
+        - label: You are willing to contribute to this
