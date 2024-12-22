@@ -51,12 +51,12 @@ jobs:
 
       - name: Publish rbxts-transformer-web2rblx@${{ steps.package-version.outputs.current-version }} w/tag next
         if: ${{ inputs.pre-release }}
-        run: pnpm publish ./packages/types --tag next
+        run: pnpm publish --tag next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
 
   publish-release:
-    name: Publish Githu Release
+    name: Publish Github Release
     runs-on: ubuntu-latest
     steps:
       - name: Create Draft Release
