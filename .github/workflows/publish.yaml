@@ -37,8 +37,6 @@ jobs:
       - name: Get Package Version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@v1.3.1
-        with:
-          path: packages/types
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
