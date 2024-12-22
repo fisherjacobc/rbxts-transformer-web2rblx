@@ -1,4 +1,4 @@
-import { type Selector, type ClassSelector, parse } from "css-tree";
+import { type ClassSelector, type Selector, parse } from "css-tree";
 
 export default function parseCss(css: string) {
 	const parsed = parse(css);
