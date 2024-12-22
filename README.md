@@ -4,8 +4,8 @@
     Roblox UI development with React, made simple.
     <br />
     <a href="https://npmjs.com/package/rbxts-transformer-web2rblx"><img alt="NPM Version" src="https://img.shields.io/npm/v/rbxts-transformer-web2rblx?style=for-the-badge"></a>
-    <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/fisherjacobc/rbxts-transformer-web2rblx/ci?style=for-the-badge">
-    <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/fisherjacobc/rbxts-transformer-web2rblx/publish?style=for-the-badge">
+    <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/fisherjacobc/rbxts-transformer-web2rblx/ci.yaml?style=for-the-badge&label=CI">
+    <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/fisherjacobc/rbxts-transformer-web2rblx/publish.yaml?style=for-the-badge&label=Publish">
   </p>
 </p>
 
