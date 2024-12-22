@@ -2,9 +2,6 @@ name: Feature/Class Support Request
 title: "feat: "
 description: Make a request for a feature or for certain css class support
 body:
-  - type: markdown
-    attributes:
-      value: "## Description"
   - type: dropdown
     id: type
     attributes:
@@ -14,6 +11,7 @@ body:
         - Other Feature Request
     validations:
       required: true
+      
   - type: textarea
     id: description
     attributes:
@@ -22,13 +20,11 @@ body:
       value: I would like to see support for [insert here]
     validations:
       required: true
-  - type: markdown
-    attributes:
-      value: "## Checks"
+      
   - type: checkboxes
     id: checkboxes
     attributes:
-      label: test
+      label: Checks
       options:
         - label: This feature is possible to do when making UI in roblox studio, not just from webdev CSS
           required: true
