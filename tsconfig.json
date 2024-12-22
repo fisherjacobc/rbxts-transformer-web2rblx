@@ -14,11 +14,13 @@
 		"moduleDetection": "force",
 		"strict": true,
 		"target": "es5",
-		"lib": ["ES2015", "DOM"],
+		"lib": [
+			"ES2015",
+			"DOM"
+		],
 		// "typeRoots": ["node_modules/@types", "node_modules/@rbxts"],
 		"skipLibCheck": true,
 		"esModuleInterop": true,
-
 		// configurable
 		"rootDir": "src",
 		"outDir": "dist",

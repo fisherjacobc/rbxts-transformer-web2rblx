@@ -1,33 +1,30 @@
 {
-  "name": "rbxts-transformer-web2rblx",
-  "version": "1.0.0-rc1",
-  "description": "",
-  "main": "dist/index.js",
-  "scripts": {
-    "prepare": "pnpm build",
-    "build": "tsc",
-    "watch": "tsc -w"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "css-tree": "^3.1.0",
-    "typescript": "^5.5.3"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@rbxts/compiler-types": "3.0.0-types.0",
-    "@rbxts/react": "^17.2.3",
-    "@rbxts/types": "^1.0.813",
-    "@types/css-tree": "^2.3.9",
-    "@types/node": "^22.10.2",
-    "@types/ts-expose-internals": "npm:ts-expose-internals@5.5.3",
-    "roblox-ts": "^3.0.0"
-  },
-  "types": "jsx.d.ts",
-  "files": [
-    "dist",
-    "jsx.d.ts"
-  ]
+	"name": "rbxts-transformer-web2rblx",
+	"version": "1.0.0-rc1",
+	"description": "",
+	"main": "dist/index.js",
+	"scripts": {
+		"prepare": "pnpm build",
+		"build": "tsc",
+		"watch": "tsc -w"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"css-tree": "^3.1.0",
+		"typescript": "^5.5.3"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@rbxts/compiler-types": "3.0.0-types.0",
+		"@rbxts/react": "^17.2.3",
+		"@rbxts/types": "^1.0.813",
+		"@types/css-tree": "^2.3.9",
+		"@types/node": "^22.10.2",
+		"@types/ts-expose-internals": "npm:ts-expose-internals@5.5.3",
+		"roblox-ts": "^3.0.0"
+	},
+	"types": "jsx.d.ts",
+	"files": ["dist", "jsx.d.ts"]
 }
