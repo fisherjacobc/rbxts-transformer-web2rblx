@@ -3,7 +3,7 @@
   <p align="center">
     Roblox UI development with React, made simple.
     <br />
-    <img alt="NPM Version" src="https://img.shields.io/npm/v/rbxts-transformer-web2rblx?style=for-the-badge">
+    <a href="https://npmjs.com/package/rbxts-transformer-web2rblx"><img alt="NPM Version" src="https://img.shields.io/npm/v/rbxts-transformer-web2rblx?style=for-the-badge"></a>
     <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/fisherjacobc/rbxts-transformer-web2rblx/ci?style=for-the-badge">
     <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/fisherjacobc/rbxts-transformer-web2rblx/publish?style=for-the-badge">
   </p>
@@ -99,7 +99,7 @@ You're all set!
 
 ## 🖌️ CSS Class Support
 
-Want to request something else to be supported? [Submit a request!]()
+Want to request something else to be supported? [Submit a request!](https://github.com/fisherjacobc/rbxts-transformer-web2rblx/issues/new?assignees=&labels=&projects=&template=feature_request.yaml&title=feat%3A+)
 
 ### Currently Supported
 - Flex (align-items, justify-content, gap, flex-direction)
