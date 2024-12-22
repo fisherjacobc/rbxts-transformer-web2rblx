@@ -30,13 +30,13 @@ body:
     id: steps
     attributes:
       label: Steps to Reproduce
-      description: |
+      placeholder: |
         Steps to reproduce the behavior:
         1. Go to '...'
         2. Use the classes '....'
         3. Try running '....'
         4. See error
-      placeholder: Steps to reproduce the bug
+      description: Steps to reproduce the bug
     validations:
       required: true
 
