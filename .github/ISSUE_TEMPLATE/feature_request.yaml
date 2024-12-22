@@ -1,5 +1,5 @@
 name: Feature/Class Support Request
-title: feat: 
+title: "feat: "
 description: Make a request for a feature or for certain css class support
 body:
   - type: markdown
