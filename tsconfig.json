@@ -1,0 +1,29 @@
+{
+	"compilerOptions": {
+		// required
+		"allowSyntheticDefaultImports": true,
+		"downlevelIteration": true,
+		"jsx": "react",
+		"jsxFactory": "React.createElement",
+		"jsxFragmentFactory": "React.Fragment",
+		"module": "commonjs",
+		"moduleResolution": "Node",
+		"resolveJsonModule": true,
+		"experimentalDecorators": true,
+		"forceConsistentCasingInFileNames": true,
+		"moduleDetection": "force",
+		"strict": true,
+		"target": "es5",
+		"lib": ["ES2015", "DOM"],
+		// "typeRoots": ["node_modules/@types", "node_modules/@rbxts"],
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+
+		// configurable
+		"rootDir": "src",
+		"outDir": "dist",
+		"incremental": true,
+		"tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
+		"declaration": true
+	}
+}

@@ -1,0 +1,79 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+
+name: Publish Package
+
+run-name: Publish Package (Dispatched by @${{ github.actor }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      pre-release:
+        type: boolean
+        description: Is this a pre-release?
+
+permissions:
+  contents: write
+
+jobs:
+  publish-npm:
+    name: Publish to NPM
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Setup .npmrc file to publish to npm
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: "https://registry.npmjs.org"
+          cache: "pnpm"
+
+      - name: Get Package Version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+        with:
+          path: packages/types
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Publish rbxts-transformer-web2rblx@${{ steps.package-version.outputs.current-version }} w/tag latest
+        if: ${{ !inputs.pre-release }}
+        run: pnpm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+
+      - name: Publish rbxts-transformer-web2rblx@${{ steps.package-version.outputs.current-version }} w/tag next
+        if: ${{ inputs.pre-release }}
+        run: pnpm publish ./packages/types --tag next
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+
+  publish-release:
+    name: Publish Githu Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Draft Release
+        id: create-draft-release
+        uses: fisherjacobc/create-release@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ needs.build.outputs.current-version }}
+          release_name: rbxts-transformer-web2rblx v${{ needs.build.outputs.current-version }}
+          draft: true
+          prerelease: ${{ inputs.pre-release }}
+          body: rbxts-transformer-web2rblx released version ${{ needs.build.outputs.current-version }}
+          generate_release_notes: true
+
+      - uses: eregon/publish-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          release_id: ${{ steps.create-draft-release.outputs.id }}
