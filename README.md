@@ -35,13 +35,13 @@ Add the transformer to your tsconfig.json, and include the `jsx.d.ts` file
 ```ts
 {   
     "compilerOptions": {
-        ...
-        "plugins": [
-			{
-				"transform": "rbxts-transformer-web2rblx",
-				"cssFilePath": "src/roblox.css",
-			}
-		]
+      ...,
+      "plugins": [
+        {
+          "transform": "rbxts-transformer-web2rblx",
+          "cssFilePath": "src/roblox.css",
+        }
+		  ]
     },
     "include": [..., "node_modules/rbxts-transformer-web2rblx/jsx.d.ts"]
 }
@@ -54,6 +54,8 @@ Change `cssFilePath` to the path of your css file
 - As of now, you can only list 1 css file
 - You can manually write your own css stylings to use
 - You can also use other tools that generate/compile to css
+- The `className` option MUST be a string literal! It cannot have dynamic data or variables since className isn't a real property on elements
+  - If you need dynamic styles affected by variables, use the default, roblox property names for those
 
 ### Using with Tailwindcss
 
@@ -96,7 +98,6 @@ npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
 #### Start using Tailwind!
 You're all set!
 
-
 ## 🖌️ CSS Class Support
 
 Want to request something else to be supported? [Submit a request!](https://github.com/fisherjacobc/rbxts-transformer-web2rblx/issues/new?assignees=&labels=&projects=&template=feature_request.yaml&title=feat%3A+)
@@ -120,6 +121,7 @@ Want to request something else to be supported? [Submit a request!](https://gith
 - Flex (justify-self, align-self, grow)
 - Shadows
 - Overflow (overflow-x, overflow-y)
+- Gradients
 - All things hover
 
 ## 📝 License
