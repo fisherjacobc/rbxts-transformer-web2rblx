@@ -174,7 +174,10 @@ function visitJsxElement(
 		);
 	}
 
-	if (ts.isJsxElement(transformedNode) || ts.isJsxFragment(transformedNode)) {
+	if (
+		(ts.isJsxElement(transformedNode) || ts.isJsxFragment(transformedNode)) &&
+		textTag
+	) {
 		let text = "`";
 		const childrenFound: ts.JsxChild[] = [];
 
