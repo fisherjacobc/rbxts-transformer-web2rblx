@@ -1132,6 +1132,25 @@ function injectAttributesFromStyles(
 			),
 		);
 
+	const borderSizePixel = attributes.properties.find(
+		(attr) =>
+			//@ts-ignore
+			ts.isJsxAttribute(attr) && attr.name.escapedText === "BorderSizePixel",
+	) as ts.JsxAttribute | undefined;
+
+	if (!borderSizePixel) {
+		attributes = addOrReplaceAttribute(
+			attributes,
+			ts.factory.createJsxAttribute(
+				ts.factory.createIdentifier("BorderSizePixel"),
+				ts.factory.createJsxExpression(
+					undefined,
+					ts.factory.createNumericLiteral(0),
+				),
+			),
+		);
+	}
+
 	if (
 		padding.left[0] !== 0 ||
 		padding.left[1] !== 0 ||
