@@ -175,52 +175,54 @@ function visitJsxElement(
 	}
 
 	if (ts.isJsxElement(transformedNode) || ts.isJsxFragment(transformedNode)) {
-		const text = transformedNode.children.find((child) => ts.isJsxText(child));
+		let text = "`";
+		const childrenFound: ts.JsxChild[] = [];
 
-		if (text) {
-			const textValue = text.getText();
+		transformedNode.children.forEach((child, index, arr) => {
+			if (ts.isJsxText(child)) {
+				if (index > 0) {
+					text += " ".repeat(child.getLeadingTriviaWidth()) + child.getText();
+				} else text += child.getText();
 
-			if (textValue === "") return context.transform(transformedNode);
+				childrenFound.push(child);
+			} else if (ts.isJsxExpression(child)) {
+				text += `$\{${child.expression?.getText()}\}`;
+				childrenFound.push(child);
+			}
+		});
 
-			const textAttribute = ts.factory.createJsxAttribute(
-				ts.factory.createIdentifier("Text"),
-				ts.factory.createJsxExpression(
-					undefined,
-					ts.factory.createStringLiteral(textValue),
-				),
-			);
+		const lastIndex = text.lastIndexOf("\n");
+		if (lastIndex !== -1)
+			text = text.slice(0, lastIndex) + text.slice(lastIndex + 1);
 
-			if (ts.isJsxElement(transformedNode))
-				transformedNode = ts.factory.updateJsxElement(
-					transformedNode,
-					ts.factory.updateJsxOpeningElement(
-						transformedNode.openingElement,
-						transformedNode.openingElement.tagName,
-						transformedNode.openingElement.typeArguments,
-						addOrReplaceAttribute(
-							transformedNode.openingElement.attributes,
-							textAttribute,
-						),
+		text += "`";
+		if (text === "") return context.transform(transformedNode);
+
+		const textAttribute = ts.factory.createJsxAttribute(
+			ts.factory.createIdentifier("Text"),
+			ts.factory.createJsxExpression(
+				undefined,
+				ts.factory.createIdentifier(text),
+			),
+		);
+
+		if (ts.isJsxElement(transformedNode))
+			transformedNode = ts.factory.updateJsxElement(
+				transformedNode,
+				ts.factory.updateJsxOpeningElement(
+					transformedNode.openingElement,
+					transformedNode.openingElement.tagName,
+					transformedNode.openingElement.typeArguments,
+					addOrReplaceAttribute(
+						transformedNode.openingElement.attributes,
+						textAttribute,
 					),
-					transformedNode.children.filter((child) => child !== text),
-					transformedNode.closingElement,
-				);
-
-			// if (ts.isJsxFragment(transformedNode)) transformedNode = ts.factory.updateJsxFragment(
-			// 	transformedNode,
-			// 	ts.factory.updateopeningj(
-			// 		transformedNode.openingElement,
-			// 		transformedNode.openingElement.tagName,
-			// 		transformedNode.openingElement.typeArguments,
-			// 		addOrReplaceAttribute(
-			// 			transformedNode.openingElement.attributes,
-			// 			textAttribute,
-			// 		),
-			// 	),
-			// 	transformedNode.children.filter((child) => child !== text),
-			// 	transformedNode.closingElement,
-			// );
-		}
+				),
+				transformedNode.children.filter(
+					(child) => !childrenFound.includes(child),
+				),
+				transformedNode.closingElement,
+			);
 	}
 
 	return context.transform(transformedNode);

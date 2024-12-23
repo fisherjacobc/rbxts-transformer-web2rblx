@@ -7,7 +7,7 @@ declare type TextInstancePropsWithClassName<T extends Instance> = Omit<
 	InstancePropsWithClassName<T>,
 	"children"
 > & {
-	children?: string | React.ReactNode;
+	children?: string | React.ReactNode | (string | React.ReactNode)[];
 };
 
 declare namespace JSX {
