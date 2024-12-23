@@ -95,7 +95,17 @@ export default function parseCss(css: string) {
 							}
 							break;
 						case "Identifier":
-							if (styles[declaration.property]) {
+							if (value.name === "transparent") {
+								styles[
+									declaration.property === "background-color"
+										? "background-opacity"
+										: declaration.property === "border-color"
+											? "border-opacity"
+											: declaration.property === "color"
+												? "text-opacity"
+												: "opacity"
+								] = "0";
+							} else if (styles[declaration.property]) {
 								styles[declaration.property] += ` ${value.name}`;
 							} else {
 								styles[declaration.property] = value.name;
