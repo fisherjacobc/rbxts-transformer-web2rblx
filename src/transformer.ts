@@ -179,7 +179,7 @@ function visitJsxElement(
 		const childrenFound: ts.JsxChild[] = [];
 
 		transformedNode.children.forEach((child, index, arr) => {
-			if (ts.isJsxText(child)) {
+			if (ts.isJsxText(child) && child.getText() !== "") {
 				if (index > 0) {
 					text += " ".repeat(child.getLeadingTriviaWidth()) + child.getText();
 				} else text += child.getText();
