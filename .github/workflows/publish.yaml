@@ -56,6 +56,7 @@ jobs:
   publish-release:
     name: Publish Github Release
     runs-on: ubuntu-latest
+    needs: publish-npm
     steps:
       - name: Create Draft Release
         id: create-draft-release
@@ -63,11 +64,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ needs.build.outputs.current-version }}
-          release_name: rbxts-transformer-web2rblx v${{ needs.build.outputs.current-version }}
+          tag_name: v${{ needs.publish-npm.outputs.current-version }}
+          release_name: rbxts-transformer-web2rblx v${{ needs.publish-npm.outputs.current-version }}
           draft: true
           prerelease: ${{ inputs.pre-release }}
-          body: rbxts-transformer-web2rblx released version ${{ needs.build.outputs.current-version }}
+          body: rbxts-transformer-web2rblx released version ${{ needs.publish-npm.outputs.current-version }}
           generate_release_notes: true
 
       - uses: eregon/publish-release@v1
