@@ -1113,7 +1113,12 @@ function injectAttributesFromStyles(
 		});
 	});
 
-	if (isTextNode)
+	if (
+		isTextNode &&
+		(font.family !== "rbxasset://fonts/families/SourceSansPro.json" ||
+			font.weight !== "Enum.FontWeight.Regular" ||
+			font.style !== "Enum.FontStyle.Normal")
+	)
 		attributes = addOrReplaceAttribute(
 			attributes,
 			ts.factory.createJsxAttribute(
