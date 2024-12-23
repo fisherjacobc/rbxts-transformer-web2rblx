@@ -19,6 +19,8 @@ jobs:
   publish-npm:
     name: Publish to NPM
     runs-on: ubuntu-latest
+    outputs:
+      current-version: ${{ steps.package-version.outputs.current-version }}
     steps:
       - uses: actions/checkout@v4
 
